@@ -1,0 +1,20 @@
+.banner{
+    margin: auto;
+    height: auto;
+    text-align: center;
+  }
+  
+  .cont_ban{
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  
+  /*color tema, pongo blanco el texto*/
+  /*bg-info navbar-dark*/
+  .navbar{
+    /*no tengo class .navbar en mi nav, pero al sobreescribir esta puedo hacer el cambio por cualquier color */
+    /* background-color: #0091ff; */
+    /* por el momento estoy utilizando un color default en el html */
+  }
