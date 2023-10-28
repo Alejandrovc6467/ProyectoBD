@@ -22,61 +22,67 @@ include('public/menu.php');
 <div class="home container"  data-aos="fade-right" data-aos-duration="1500">
 
 
-   
-<div class="registrarse">
+  <div class="formulario">
+
+        
+    <form id="registarMotocicleta">
+
+      <div class="componentesFormulario">
+          
+        <p>
+          <label>Placa</label><br>
+          <input type="text"  name="placa" id="placa" placeholder="Ingresa la placa"  autocomplete required >
+        </p>
+
+        <p>
+          <label>Marca</label><br>
+          <input type="text"  name="marca" id="marca" placeholder="Ingresa la marca"  autocomplete required >
+        </p>
+
+        <p>
+          <label>Modelo</label><br>
+          <input type="text"  name="modelo" id="modelo" placeholder="Ingresa el modelo"  autocomplete required >
+        </p>
 
 
-<h5>Ingrese los siguientes datos para poder continuar y subir tus documentos</h5>
+        <p>
+          <label>Año</label><br>
+          <input type="text"  name="anio" id="anio" placeholder="Ingresa el año"  autocomplete required >
+        </p>
 
-<div class="registrarse_form">
+        <p>
+          <label>Cilindraje</label><br>
+          <input type="text"  name="cilindraje" id="cilindraje" placeholder="Ingresa el cilindraje"  autocomplete required >
+        </p>
 
-  <h4>Ingresa tus datos</h4>
+        <p>
+          <label>Tipo motor</label><br>
+          <input type="text"  name="tipomotor" id="tipomotor" placeholder="Ingresa el Tipo de motor"  autocomplete required >
+        </p>
 
-  <form id="registarMotocicleta">
+        <p>
+          <label>Propietario nombre</label><br>
+          <input type="text"  name="propietario_nombre" id="propietario_nombre" placeholder="Ingresa el nombre"  autocomplete required >
+        </p>
 
-    <div class="txt_field_registrarse">
-      <input type="text" name="nombre" id="nombre">
-      <span></span>
-      <label>Nombre:</label>
-    </div>
-    
-    <div class="txt_field_registrarse">
-      <input type="text" name="apellidos" id="apellidos">
-      <span></span>
-      <label>Apellidos:</label>
-    </div>
+        <p>
+          <label>Propietario direccion</label><br>
+          <input type="text"  name="propietario_direccion" id="propietario_direccion" placeholder="Ingresa la direccion"  autocomplete required >
+        </p>
 
-    <div class="txt_field_registrarse">
-      <input type="text" name="institucion" id="institucion">
-      <span></span>
-      <label>Institución:</label>
-    </div>
+      </div>
 
-    <div class="txt_field_registrarse">
-      <input type="email" name="reply_to" id="reply_to">
-      <span></span>
-      <label>Correo:</label>
-    </div>
 
-    <div class="txt_field_registrarse">
-      <input type="password" id="password">
-      <span></span>
-      <label>Contraseña:</label>
-    </div>
+      <div class="botonesFormulario">
+        <input type="submit" value="registrar" id="buttonregistrar" class="botonRegistrar">
+      </div>
 
-    <div class="txt_field_registrarse">
-      <input name="password" id="confirm_password" type="password">
-      <span></span>
-      <label>Confirmar Contraseña:</label>
-    </div>
+            
+    </form>
 
-    <input type="submit" value="Registrarse" id="button">
-
-  </form>
-
-</div>
-
-</div>
+        
+      
+  </div>
 
             
 
@@ -94,20 +100,26 @@ include('public/menu.php');
 
 
 <script>
-  const btn = document.getElementById('button');
-
+  
   document.getElementById('registarMotocicleta')
     .addEventListener('submit', function(event) {
       event.preventDefault();
 
-      //aqui debo  de quitar este de la contrasenia y verificar que solo se escriban numeros en el input de la placa
-      if ($('#password').val() === $('#confirm_password').val()) {
+
+      //verifico que en el input placa solo se ingresen numeros
+      if (/^\d*$/.test($('#placa').val())) {
+
+        console.log("si es un numero");
+
         var form_data = {
-          email: $('#reply_to').val(),
-          password: $('#password').val(),
-          nombre: $('#nombre').val(),
-          apellidos: $('#apellidos').val(),
-          institucion: $('#institucion').val(),
+          placa: $('#placa').val(),
+          marca: $('#marca').val(),
+          modelo: $('#modelo').val(),
+          anio: $('#anio').val(),
+          cilindraje: $('#cilindraje').val(),
+          tipomotor: $('#tipomotor').val(),
+          propietario_nombre: $('#propietario_nombre').val(),
+          propietario_direccion: $('#propietario_direccion').val(),
         
         };
 
@@ -124,34 +136,29 @@ include('public/menu.php');
             console.log(response);
 
             
-            /*
-            if (response[0].resultado !== "0") {
-              Swal.fire({
-                icon: 'success',
-                title: 'Se registro con exito, verifique su correo para activar la cuenta'
-              })
-
-              btn.value = 'Sending...';
-
-              const serviceID = 'default_service';
-              const templateID = 'template_2sapvvh';
-
-              emailjs.sendForm(serviceID, templateID, document.getElementById('signin-form'))
-                .then(() => {
-                  btn.value = 'Send Email';
-                  alert('Sent!');
-                }, (err) => {
-                  btn.value = 'Send Email';
-                  alert(JSON.stringify(err));
-                });
-            } else {
+            
+            if (response[0].Mensaje  === 'Placa ya registrada') {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Ocurrio un error'
+                title: 'Placa ya registrada'
+                color:'#f2f2f2',
+                confirmButtonColor: '#5A7099',
+              })
+
+             
+            } else if(response[0].Mensaje  === 'Motocicleta registrada exitosamente') {
+              Swal.fire({
+                icon: 'success',
+                title: '¡Genial!',
+                text: 'Motocicleta registrada exitosamente'
+                color:'#f2f2f2',
+                confirmButtonColor: '#5A7099',
               })
             }
-            */
+
+
+            
           },
           error: function(xhr, status, error) {
             console.log(error, xhr, status)
@@ -161,7 +168,7 @@ include('public/menu.php');
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Las contraseñas no coinciden'
+          text: 'Debes ingresar un valor numérico en la placa'
         })
       }
     });

@@ -22,8 +22,9 @@ class IndexController
 
     //inicio proyecto bd
 
+
     
-    public function InsertarMotocicleta()
+    public function no()
     {
         require 'model/userModel.php';
         $userModel = new userModel();
@@ -38,6 +39,31 @@ class IndexController
         $propietario_direccion = 'Calle Principal #235';
 
         $resultado = $userModel->InsertarMotocicleta($placa, $marca, $modelo, $anio, $cilindraje, $tipomotor, $propietario_nombre, $propietario_direccion);
+
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+
+
+    public function InsertarMotocicleta()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+
+        $resultado = $userModel->InsertarMotocicleta(
+            $_POST['placa'],
+            $_POST['marca'],
+            $_POST['modelo'],
+            $_POST['anio'],
+            $_POST['cilindraje'],
+            $_POST['tipomotor'],
+            $_POST['propietario_nombre'],
+            $_POST['propietario_direccion']
+
+
+        );
 
         header('Content-Type: application/json');
         echo json_encode($resultado);

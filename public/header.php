@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="public/css/base.css?323"/>
 	<link rel="stylesheet" href="public/css/bienvenida.css?1"/>
 	<link rel="stylesheet" href="public/css/head.css?54">
-	<link rel="stylesheet" href="public/css/home.css?5">
+	<link rel="stylesheet" href="public/css/home.css?778">
 
 
 	<!--Fonts-->

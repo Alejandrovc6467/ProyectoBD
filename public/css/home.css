@@ -1,3 +1,100 @@
 .home{
     margin: 120px 0;
 }
+
+
+
+
+/*nuevo del proyecto viejo*/
+
+.formulario{
+    width: 100%;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgb(228, 228, 228);
+}
+
+
+.componentesFormulario{
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+
+    margin-bottom: 25px;
+}
+
+.componentesFormulario label{
+    margin-bottom: 10px;
+    color: rgb(47, 47, 47);
+}
+
+
+
+
+
+
+form p {
+    margin-right: 50px;
+     margin-bottom: 50px;
+}
+
+    
+
+input{
+    border-radius: 5px;
+    margin-top: 7px;
+    border-color: transparent;
+    outline: 2px solid #919191;
+    width: 180px; 
+} 
+
+input:hover{
+    box-shadow: 0 0 10px 0 rgba(53, 99, 144, 0.39), 0 0 10px 4px rgba(121, 121, 121, 0.455);
+}
+
+
+   
+ 
+.botonRegistrar{
+    background-color: rgb(94, 188, 0);/**/
+    outline: 2px solid rgb(94, 188, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    border-color: transparent;
+    margin-top: 25px;
+    margin-right: 50px;
+    width: 100px;
+}
+
+
+
+@media all and (max-width:530px){
+
+    form{
+        flex-direction: column;
+    }
+
+    input{
+       margin-bottom: 10px;
+    }
+    form p {
+        margin-bottom: 20px;
+    }
+
+}  
