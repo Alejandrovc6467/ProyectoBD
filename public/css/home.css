@@ -7,6 +7,12 @@
 
 /*nuevo del proyecto viejo*/
 
+.titulo h2{
+    text-align: center;
+    color: rgb(108, 108, 108);
+    margin-bottom: 50px;
+}
+
 .formulario{
     width: 100%;
     padding-bottom: 50px;
@@ -40,7 +46,7 @@
 
 .componentesFormulario label{
     margin-bottom: 10px;
-    color: rgb(47, 47, 47);
+    color: rgb(76, 76, 76);
 }
 
 
@@ -59,27 +65,25 @@ input{
     border-radius: 5px;
     margin-top: 7px;
     border-color: transparent;
-    outline: 2px solid #919191;
+    outline: 2px solid #088cff;
     width: 180px; 
 } 
 
 input:hover{
-    box-shadow: 0 0 10px 0 rgba(53, 99, 144, 0.39), 0 0 10px 4px rgba(121, 121, 121, 0.455);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 
    
  
 .botonRegistrar{
-    background-color: rgb(94, 188, 0);/**/
-    outline: 2px solid rgb(94, 188, 0);
+    background-color: #088cff;
     color: rgb(255, 255, 255);
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
     border-color: transparent;
     margin-top: 25px;
-    margin-right: 50px;
-    width: 100px;
+    width: 150px;
 }
 
 
@@ -98,3 +102,12 @@ input:hover{
     }
 
 }  
+
+
+
+
+/*registar motocicleta*/
+.actualizarComponentesFormulario{
+    
+}
+

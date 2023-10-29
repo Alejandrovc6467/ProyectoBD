@@ -12,7 +12,7 @@ class userModel
     }
 
 
-    //inicio proyecto bd
+    //inicio proyecto bd  -------------------------------------------------------
 
 
     public function InsertarMotocicleta($placa, $marca, $modelo, $anio, $cilindraje, $tipomotor, $propietario_nombre, $propietario_direccion)
@@ -33,8 +33,16 @@ class userModel
     }
 
 
+    public function obtenerMotocicletas()
+    {
+        $consulta = $this->db->query('CALL ObtenerMotocicletasActivasConDetalles()');
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
 
-    //fin proyecto bd
+
+
+    //fin proyecto bd  -----------------------------------------------------------------
 
 
 

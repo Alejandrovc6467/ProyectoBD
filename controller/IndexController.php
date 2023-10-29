@@ -20,31 +20,7 @@ class IndexController
 
 
 
-    //inicio proyecto bd
-
-
-    
-    public function no()
-    {
-        require 'model/userModel.php';
-        $userModel = new userModel();
-
-        $placa = 123456;
-        $marca = 'Yamaha';
-        $modelo = 'CBR600RR';
-        $anio = 2020;
-        $cilindraje = 599;
-        $tipomotor = '4 tiempos';
-        $propietario_nombre = 'Alberto Vargas';
-        $propietario_direccion = 'Calle Principal #235';
-
-        $resultado = $userModel->InsertarMotocicleta($placa, $marca, $modelo, $anio, $cilindraje, $tipomotor, $propietario_nombre, $propietario_direccion);
-
-        header('Content-Type: application/json');
-        echo json_encode($resultado);
-        exit;
-    }
-
+    //inicio proyecto bd --------------------------------------------------------------
 
     public function InsertarMotocicleta()
     {
@@ -71,7 +47,20 @@ class IndexController
     }
 
 
-    //fin proyecto bd
+    public function obtenerMotocicletas()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+        $lista = $userModel->obtenerMotocicletas();
+
+        header('Content-Type: application/json');
+        echo json_encode($lista);
+        exit;
+    }
+
+
+    //fin proyecto bd -------------------------------------------------------------------------------------
 
 
    
