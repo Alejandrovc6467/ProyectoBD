@@ -114,8 +114,8 @@ include('public/menu.php');
 
 
 
-    <!-- Modal update -->
-    <div class="modal" id="modalupdate" tabindex="-1">
+<!-- Modal update -->
+<div class="modal" id="modalupdate" tabindex="-1">
 
       <div class="modal-dialog">
         <div class="modal-content">
@@ -190,166 +190,222 @@ include('public/menu.php');
         </div>
       </div>
 
-    </div>
+</div>
 
 
     
-
-
-     <!-- Modal delete -->
-    <div class="modal" id="modaldelete" tabindex="-1">
-
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Delete Motocicleta</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-           
-              <div class="contendedor_botones_borrado">
-
-                <form id="borrarMotocicleta">
-
-                    <div class="componentesFormulario">
-                        
-                      <input type="hidden"  name="id_motocicleta_borrar" id="id_motocicleta_borrar" placeholder="Ingresa la placa"  autocomplete required >
-                      
-                    </div>
-
-
-                    <div class="botonesFormulario">
-                      <input type="submit" value="Borrado Lógico" id="borradoLogico" class="botonRegistrar">
-                      <input type="submit" value="Borrado Físico" id="borradoFisico" class="botonRegistrar">
-                    </div>
-
-                          
-                </form>
-
-
-              </div>
-          </div>
-          
-        </div>
-      </div>
-
-    </div>
-
 
 
    
     
 
 <script>
-        
 
-        function obtenerUsuarios() {
-            $.ajax({
-                type: "POST",
-                url: "?controlador=Index&accion=obtenerMotocicletas",
-                dataType: "json",
-                success: function(response) {
+ 
 
-                    // Limpiar la tabla antes de agregar nuevos datos
-                    $("#containertabla tbody").empty();
+function obtenerMotocicletas() {
+    $.ajax({
+        type: "POST",
+        url: "?controlador=Index&accion=obtenerMotocicletas",
+        dataType: "json",
+        success: function(response) {
+            // Limpiar la tabla antes de agregar nuevos datos
+            $("#containertabla tbody").empty();
 
-                    // Recorrer la respuesta y agregar los datos a la tabla
-                    $.each(response, function(index, motocicleta) {
-                      
-                      console.log(response);
-                      
-                            var row = $("<tr>");
+            // Recorrer la respuesta y agregar los datos a la tabla
+            $.each(response, function(index, motocicleta) {
+                var row = $("<tr>");
+                row.append($("<td>").text(motocicleta.placa));
+                row.append($("<td>").text(motocicleta.marca));
+                row.append($("<td>").text(motocicleta.modelo));
+                row.append($("<td>").text(motocicleta.anio));
+                row.append($("<td>").text(motocicleta.cilindraje));
+                row.append($("<td>").text(motocicleta.tipo_motor));
+                row.append($("<td>").text(motocicleta.propietario_nombre));
+                row.append($("<td>").text(motocicleta.propietario_direccion));
 
-                            
-                            row.append($("<td>").text(motocicleta.placa));
-                            row.append($("<td>").text(motocicleta.marca));
-                            row.append($("<td>").text(motocicleta.modelo));
-                            row.append($("<td>").text(motocicleta.anio));
-                            row.append($("<td>").text(motocicleta.cilindraje));
-                            row.append($("<td>").text(motocicleta.tipo_motor));
-                            row.append($("<td>").text(motocicleta.propietario_nombre));
-                            row.append($("<td>").text(motocicleta.propietario_direccion));
-                     
+                var buttonDeleteFisico = $("<button>")
+                    .text("Delete Físico")
+                    .attr("class", "delete-fisico-button")
+                    .data("placa", motocicleta.placa);
 
-                            var buttonUpdate = $("<button>")
-                            .text("Update")
-                            .attr("data-bs-toggle", "modal")
-                            .attr("data-bs-target", "#modalupdate");
+                var buttonDeleteLogico = $("<button>")
+                    .text("Delete Lógico")
+                    .attr("class", "delete-logico-button")
+                    .data("placa", motocicleta.placa);
 
-                            var buttonDelete = $("<button>")
-                            .text("Delete")
-                            .attr("data-bs-toggle", "modal")
-                            .attr("data-bs-target", "#modaldelete");
-                           
-                            var tdButtons = $("<td>").append(buttonUpdate, buttonDelete);
+                var buttonUpdate = $("<button>")
+                    .text("Update")
+                    .attr("data-bs-toggle", "modal")
+                    .data("placa", motocicleta.placa)
+                    .data("marca", motocicleta.marca)
+                    .data("modelo", motocicleta.modelo)
+                    .data("anio", motocicleta.anio)
+                    .data("cilindraje", motocicleta.cilindraje)
+                    .data("tipo_motor", motocicleta.tipo_motor)
+                    .data("propietario_nombre", motocicleta.plpropietario_nombreaca)
+                    .data("propietario_direccion", motocicleta.propietario_direccion)
+                    .attr("data-bs-target", "#modalupdate");//atributo para que me abra el modal de bootstrap
 
-                            
+                var tdButtons = $("<td>").append(buttonUpdate, buttonDeleteFisico, buttonDeleteLogico);
 
-                            // Agregar los botones a la fila
-                            row.append(tdButtons);
-                        /*
-                            // Agregar un controlador de eventos change al select
-                            select.on("change", function() {
-                                var nuevoRol = $(this).val();
-                                var userEmail = usuario.email; // Obtener el email del usuario
+                // Agregar los botones a la fila
+                row.append(tdButtons);
 
-                                // Llamar a una función para actualizar el rol en el servidor
-                                actualizarRolEnServidor(userEmail, nuevoRol);
-
-                                console.log("Nuevo rol seleccionado: " + nuevoRol);
-                            });
-                            */
-
-                            $("#containertabla tbody").append(row);
-                        
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.log(error, xhr, status);
-                }
+                $("#containertabla tbody").append(row);
             });
+        },
+        error: function(xhr, status, error) {
+            console.log(error, xhr, status);
+        }
+    });
+}
+
+
+
+
+
+// Agregar manejador de eventos para el botón "Delete Físico" que muestra una alerta
+$("#containertabla").on("click", ".delete-fisico-button", function() {
+
+
+    // Mostrar una alerta con información sobre la fila
+    var placaDefila = $(this).data("placa");
+    alert("Borrado Físico para la Placa: " + placa);
+
+
+
+    var form_data = {
+      placa: placaDefila
+    };
+
+
+    $.ajax({
+      type: "POST",
+      url: "?controlador=Index&accion=borradoMotocicletafisico",
+      data: form_data,
+      dataType: "json",
+      success: function(response) {
+
+        console.log(response);
+
+            
+            
+        if (response[0].Mensaje  === 'No se encontró ninguna motocicleta con la placa especificada') {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                title: 'No se encontró ninguna motocicleta con la placa especificada',
+                confirmButtonColor: '#5A7099'
+              })
+
+             
+        } else if(response[0].Mensaje  === 'Borrado realizado con éxito') {
+
+
+
+              Swal.fire({
+                icon: 'success',
+                title: '¡Genial!',
+                text: 'Borrado realizado con éxito',
+                confirmButtonColor: '#5A7099'
+              })
+
+              obtenerMotocicletas();
         }
 
 
+            
+        },
+          error: function(xhr, status, error) {
+          console.log(error, xhr, status)
+        }
 
-        function actualizarRolEnServidor(userEmail,  nuevoRol) {
+    });
 
-            var form_data = {
-                email: userEmail,
-                rol: nuevoRol
-            };
 
-            $.ajax({
-                type: "POST",
-                url: "?controlador=Index&accion=actualizarRol",
-                dataType: "json",
-                data: form_data,
-                success: function(response) {
-                    console.log(response)
-                if (response==1) {
-                    console.log("se actualizo correctamente")
-                }
 
-                },
-                error: function(xhr, status, error) {
-                    console.log(error, xhr, status);
-                }
-            });
 
+});
+
+// Agregar manejador de eventos para el botón "Delete Lógico" que muestra una alerta
+$("#containertabla").on("click", ".delete-logico-button", function() {
+
+    // Mostrar una alerta con información sobre la fila
+    var placa = $(this).data("placa");
+    alert("Borrado Lógico para la Placa: " + placa);
+
+
+
+    var form_data = {
+      placa: placaDefila
+    };
+
+
+    $.ajax({
+      type: "POST",
+      url: "?controlador=Index&accion=BorradoMotocicletaLogico",
+      data: form_data,
+      dataType: "json",
+      success: function(response) {
+
+        console.log(response);
+
+            
+            
+        if (response[0].Mensaje  === 'No se encontró ninguna motocicleta con la placa especificada') {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                title: 'No se encontró ninguna motocicleta con la placa especificada',
+                confirmButtonColor: '#5A7099'
+              })
+
+             
+        } else if(response[0].Mensaje  === 'Borrado realizado con éxito') {
+
+
+
+              Swal.fire({
+                icon: 'success',
+                title: '¡Genial!',
+                text: 'Borrado realizado con éxito',
+                confirmButtonColor: '#5A7099'
+              })
+
+              obtenerMotocicletas();
         }
 
 
-        obtenerUsuarios();
+            
+        },
+          error: function(xhr, status, error) {
+          console.log(error, xhr, status)
+        }
 
+    });
+
+
+});
+
+
+
+
+
+obtenerMotocicletas();
+
+
+
+
+ 
         
 
-    </script>
+</script>
 
 
 
 
 
-<script src="public/js/registrarMotocicleta.js"></script>
 
 
 

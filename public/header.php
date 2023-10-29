@@ -29,8 +29,11 @@
 	<!--iconos-->
 	<script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 
+	
 
+	<!--jquery-->
 	<script src="public/js/jquery.js"></script>
+	<!--sweet alert-->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 

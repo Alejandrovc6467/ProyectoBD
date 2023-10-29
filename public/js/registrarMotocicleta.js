@@ -46,6 +46,9 @@
 
              
             } else if(response[0].Mensaje  === 'Motocicleta registrada exitosamente') {
+
+              obtenerMotocicletas();
+              
               Swal.fire({
                 icon: 'success',
                 title: '¡Genial!',

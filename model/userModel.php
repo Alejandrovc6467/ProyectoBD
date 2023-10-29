@@ -40,6 +40,28 @@ class userModel
         return $resultado;
     }
 
+    public function borradoMotocicletafisico($placa)
+    {
+        $consulta = $this->db->prepare('call borradoMotocicletafisico(?)');
+        $consulta->bindParam(1, $placa);
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
+    
+
+    public function BorradoMotocicletaLogico($placa)
+    {
+        $consulta = $this->db->prepare('call BorradoMotocicletaLogico(?)');
+        $consulta->bindParam(1, $placa);
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
 
 
     //fin proyecto bd  -----------------------------------------------------------------

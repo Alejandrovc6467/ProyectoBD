@@ -113,6 +113,62 @@ DELIMITER ;
 
 ----------------- borrar logico -------------------
 
+
+DELIMITER //
+
+CREATE PROCEDURE BorradoMotocicletaLogico(
+    IN p_placa INT
+)
+BEGIN
+    DECLARE v_rows_affected INT;
+    
+    -- Intentar actualizar la columna "activo" a 0 (inactivo) para realizar un borrado lógico
+    UPDATE motocicleta SET activo = 0 WHERE placa = p_placa;
+    
+    -- Obtener el número de filas afectadas por la operación de actualización
+    SET v_rows_affected = ROW_COUNT();
+    
+    IF v_rows_affected > 0 THEN
+        -- El borrado lógico se realizó con éxito
+        SELECT "Borrado realizado con éxito" AS Mensaje;
+    ELSE
+        -- No se encontró ninguna motocicleta con la placa especificada
+        SELECT "No se encontró ninguna motocicleta con la placa especificada" AS Mensaje;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+
+
+
 ----------------- borrar fisico -------------------
+
+DELIMITER //
+
+CREATE PROCEDURE EliminarMotocicleta(
+    IN p_placa INT
+)
+BEGIN
+    DECLARE v_rows_affected INT;
+    
+    -- Intentar eliminar el registro de la motocicleta
+    DELETE FROM motocicleta WHERE placa = p_placa;
+    
+    -- Obtener el número de filas afectadas por la operación de borrado
+    SET v_rows_affected = ROW_COUNT();
+    
+    IF v_rows_affected > 0 THEN
+        -- El borrado se realizó con éxito
+        SELECT "Borrado realizado con éxito" AS Mensaje;
+    ELSE
+        -- No se encontró ninguna motocicleta con la placa especificada
+        SELECT "No se encontró ninguna motocicleta con la placa especificada" AS Mensaje;
+    END IF;
+END //
+
+DELIMITER ;
+
 
 

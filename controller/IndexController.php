@@ -60,6 +60,38 @@ class IndexController
     }
 
 
+    public function borradoMotocicletafisico()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+
+        $resultado = $userModel->borradoMotocicletafisico(
+            $_POST['placa']
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+
+
+    public function BorradoMotocicletaLogico()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+
+        $resultado = $userModel->BorradoMotocicletaLogico(
+            $_POST['placa']
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+
+
     //fin proyecto bd -------------------------------------------------------------------------------------
 
 
