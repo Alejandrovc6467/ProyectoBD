@@ -111,6 +111,92 @@ DELIMITER ;
 
 ----------------- actualizar ----------------------
 
+DELIMITER //
+
+CREATE PROCEDURE ActualizarMotocicleta(
+    IN p_placa INT,
+    IN p_marca VARCHAR(500),
+    IN p_modelo VARCHAR(500),
+    IN p_anio INT,
+    IN p_cilindraje INT,
+    IN p_tipo_motor VARCHAR(500),
+    IN p_propietario_nombre VARCHAR(500),
+    IN p_propietario_direccion VARCHAR(500)
+)
+BEGIN
+    DECLARE v_error_occurred INT DEFAULT 0;
+    
+    -- Iniciar un manejador de excepciones
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+    BEGIN
+        SET v_error_occurred = 1;
+    END;
+
+    -- Actualizar la tabla 'motocicleta'
+    UPDATE motocicleta
+    SET marca = p_marca, modelo = p_modelo, anio = p_anio
+    WHERE placa = p_placa;
+
+    -- Si se produce un error, establecer la bandera de error
+    IF v_error_occurred = 1 THEN
+        SELECT "Ha ocurrido un error al actualizar" AS Mensaje;
+    ELSE
+        -- Actualizar la tabla 'detalles_motor'
+        UPDATE detalles_motor
+        SET cilindraje = p_cilindraje, tipo_motor = p_tipo_motor
+        WHERE motocicleta_placa = p_placa;
+
+        -- Actualizar la tabla 'detalles_propietario'
+        UPDATE detalles_propietario
+        SET propietario_nombre = p_propietario_nombre, propietario_direccion = p_propietario_direccion
+        WHERE motocicleta_placa = p_placa;
+
+        -- Si no se ha producido un error, mostrar mensaje de éxito
+        SELECT "Actualización realizada con éxito" AS Mensaje;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+
+
+----------------- buscar ----------------------------
+
+DELIMITER //
+
+CREATE PROCEDURE BuscarMotocicletaPorPlaca(
+    IN p_placa INT
+)
+BEGIN
+    DECLARE v_motocicleta_encontrada INT DEFAULT 0;
+    
+    SELECT
+        m.placa,
+        m.marca,
+        m.modelo,
+        m.anio,
+        m.activo,
+        dm.cilindraje AS cilindraje,
+        dm.tipo_motor AS tipo_motor,
+        dp.propietario_nombre AS propietario_nombre,
+        dp.propietario_direccion AS propietario_direccion
+    FROM motocicleta AS m
+    LEFT JOIN detalles_motor AS dm ON m.placa = dm.motocicleta_placa
+    LEFT JOIN detalles_propietario AS dp ON m.placa = dp.motocicleta_placa
+    WHERE m.placa = p_placa;
+    
+    -- Verificar si se encontró una motocicleta
+    SELECT FOUND_ROWS() INTO v_motocicleta_encontrada;
+    
+    IF v_motocicleta_encontrada = 0 THEN
+        SELECT "No hay ninguna motocicleta con esa placa" AS Mensaje;
+    END IF;
+END //
+
+DELIMITER ;
+
+
 ----------------- borrar logico -------------------
 
 

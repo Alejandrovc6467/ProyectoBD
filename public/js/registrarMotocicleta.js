@@ -2,11 +2,11 @@
 
   document.getElementById('registarMotocicleta')
     .addEventListener('submit', function(event) {
-      event.preventDefault();
+      event.preventDefault();//necesario cuando es un formulario
 
 
-      //verifico que en el input placa solo se ingresen numeros
-      if (/^\d*$/.test($('#placa').val())) {
+      //verifico que solo se ingresen valores numericos en cilindraje y anio
+      if (/^\d*$/.test($('#placa').val()) && /^\d*$/.test($('#cilindraje').val()) && /^\d*$/.test($('#anio').val()) ) {
 
         console.log("si es un numero");
 
@@ -16,7 +16,7 @@
           modelo: $('#modelo').val(),
           anio: $('#anio').val(),
           cilindraje: $('#cilindraje').val(),
-          tipomotor: $('#tipomotor').val(),
+          tipo_motor: $('#tipo_motor').val(),
           propietario_nombre: $('#propietario_nombre').val(),
           propietario_direccion: $('#propietario_direccion').val(),
         
@@ -68,7 +68,7 @@
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Debes ingresar un valor numérico en la placa'
+          text: 'Debes ingresar valores numéricos en los campos Placa, Cilindraje y Año'
         })
       }
     });

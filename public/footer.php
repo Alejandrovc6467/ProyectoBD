@@ -33,11 +33,7 @@
     AOS.init();
   </script>
 
-  <!--mis js-->
-	<script src="public/js/registrarMotocicleta.js?78784"></script>
-
-
-
+  
 
 
   </body>

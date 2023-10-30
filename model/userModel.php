@@ -15,7 +15,7 @@ class userModel
     //inicio proyecto bd  -------------------------------------------------------
 
 
-    public function InsertarMotocicleta($placa, $marca, $modelo, $anio, $cilindraje, $tipomotor, $propietario_nombre, $propietario_direccion)
+    public function InsertarMotocicleta($placa, $marca, $modelo, $anio, $cilindraje, $tipo_motor, $propietario_nombre, $propietario_direccion)
     {
         $consulta = $this->db->prepare('call InsertarMotocicleta(?,?,?,?,?,?,?,?)');
         $consulta->bindParam(1, $placa);
@@ -23,7 +23,25 @@ class userModel
         $consulta->bindParam(3, $modelo);
         $consulta->bindParam(4, $anio);
         $consulta->bindParam(5, $cilindraje);
-        $consulta->bindParam(6, $tipomotor);
+        $consulta->bindParam(6, $tipo_motor);
+        $consulta->bindParam(7, $propietario_nombre);
+        $consulta->bindParam(8, $propietario_direccion);
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
+    
+    public function ActualizarMotocicleta($placa, $marca, $modelo, $anio, $cilindraje, $tipo_motor, $propietario_nombre, $propietario_direccion)
+    {
+        $consulta = $this->db->prepare('call ActualizarMotocicleta(?,?,?,?,?,?,?,?)');
+        $consulta->bindParam(1, $placa);
+        $consulta->bindParam(2, $marca);
+        $consulta->bindParam(3, $modelo);
+        $consulta->bindParam(4, $anio);
+        $consulta->bindParam(5, $cilindraje);
+        $consulta->bindParam(6, $tipo_motor);
         $consulta->bindParam(7, $propietario_nombre);
         $consulta->bindParam(8, $propietario_direccion);
         $consulta->execute();
@@ -37,6 +55,16 @@ class userModel
     {
         $consulta = $this->db->query('CALL ObtenerMotocicletasActivasConDetalles()');
         $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
+    public function BuscarMotocicletaPorPlaca($placa)
+    {
+        $consulta = $this->db->prepare('call BuscarMotocicletaPorPlaca(?)');
+        $consulta->bindParam(1, $placa);
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+        $consulta->closeCursor();
         return $resultado;
     }
 

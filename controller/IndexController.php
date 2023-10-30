@@ -34,7 +34,31 @@ class IndexController
             $_POST['modelo'],
             $_POST['anio'],
             $_POST['cilindraje'],
-            $_POST['tipomotor'],
+            $_POST['tipo_motor'],
+            $_POST['propietario_nombre'],
+            $_POST['propietario_direccion']
+
+
+        );
+
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+
+    public function ActualizarMotocicleta()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+
+        $resultado = $userModel->ActualizarMotocicleta(
+            $_POST['placa'],
+            $_POST['marca'],
+            $_POST['modelo'],
+            $_POST['anio'],
+            $_POST['cilindraje'],
+            $_POST['tipo_motor'],
             $_POST['propietario_nombre'],
             $_POST['propietario_direccion']
 
@@ -53,6 +77,19 @@ class IndexController
         $userModel = new userModel();
 
         $lista = $userModel->obtenerMotocicletas();
+
+        header('Content-Type: application/json');
+        echo json_encode($lista);
+        exit;
+    }
+
+
+    public function BuscarMotocicletaPorPlaca()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+        $lista = $userModel->BuscarMotocicletaPorPlaca();
 
         header('Content-Type: application/json');
         echo json_encode($lista);

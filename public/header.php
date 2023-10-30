@@ -14,7 +14,8 @@
 	<link rel="stylesheet" href="public/css/bienvenida.css?1"/>
 	<link rel="stylesheet" href="public/css/head.css?54">
 	<link rel="stylesheet" href="public/css/home.css?74778">
-	<link rel="stylesheet" href="public/css/tabla.css?741">
+	<link rel="stylesheet" href="public/css/buscar.css?21"/>
+	<link rel="stylesheet" href="public/css/tabla.css?1">
 
 
 	<!--Fonts-->
