@@ -80,22 +80,14 @@ include('public/menu.php');
 
   <div class="buscar">
 
-    <form id="buscarMotocicleta">
+    <div class="componentesFormulario_buscar">
+      <label>Placa a buscar</label><br>
+      <input type="text"  name="placa_a_buscar" id="placa_a_buscar" placeholder="Ingresa la placa"  autocomplete required >
+    </div>
 
-      <div class="componentesFormulario_buscar">
-        
-        <label>Placa a buscar</label><br>
-        <input type="text"  name="placa_a_buscar" id="placa_a_buscar" placeholder="Ingresa la placa"  autocomplete required >
-        
-      </div>
-
-
-      <div class="botonesFormulario_buscar">
-        <input type="submit" value="Buscar" id="buttonbuscar" class="botonBuscar">
-      </div>
-
-            
-    </form>
+    <div class="botonesFormulario_buscar" id="botonesFormulario_buscar">
+      <button value="Buscar" id="buttonbuscar" class="botonBuscar">Buscar</button>
+    </div>
   
   </div>
 
@@ -212,11 +204,92 @@ include('public/menu.php');
 </div>
 
 
-    
+
 
 
    
+   
+
+
+<script>
+
+// Entra en accion cuando se presiona el botón "buscar"
+$("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
+
+  //verifico que solo se ingresen valores numericos en placa
+  if (/^\d*$/.test($('#placa_a_buscar').val()) ) {
+
+
+    console.log( $('#placa_a_buscar').val());
+
+   
+    var p =  $('#placa_a_buscar').val();
     
+
+    var databuscar = {
+      placa: p
+    };
+
+    
+    $.ajax({
+      type: "POST",
+      url: "?controlador=Index&accion=BuscarMotocicletaPorPlaca",
+      data: databuscar,
+      dataType: "json",
+      success: function(response) {
+
+        console.log(response);
+
+            //********************  no esta entrando al if, el console log me da un arry vacio */
+            
+        if (response[0].Mensaje  === 'No hay ninguna motocicleta activa con esa placa') {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                title: 'No hay ninguna motocicleta activa con esa placa',
+                confirmButtonColor: '#5A7099'
+              })
+
+             
+        } else {
+
+
+
+          console.log('entre al else');
+          //aqui debe
+             // obtenerMotocicletas();
+        }
+
+
+            
+        },
+          error: function(xhr, status, error) {
+          console.log(error, xhr, status)
+        }
+
+    });
+
+
+
+  } else {
+    Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Ingresa solo valores numéricos para buscar'
+    })
+  }
+  
+
+
+});
+
+
+</script>
+
+
+
+
+
 
 
 

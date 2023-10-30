@@ -89,10 +89,13 @@ class IndexController
         require 'model/userModel.php';
         $userModel = new userModel();
 
-        $lista = $userModel->BuscarMotocicletaPorPlaca();
+
+        $resultado = $userModel->BuscarMotocicletaPorPlaca(
+            $_POST['placa']
+        );
 
         header('Content-Type: application/json');
-        echo json_encode($lista);
+        echo json_encode($resultado);
         exit;
     }
 

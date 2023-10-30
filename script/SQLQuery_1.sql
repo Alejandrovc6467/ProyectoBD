@@ -162,7 +162,6 @@ DELIMITER ;
 
 
 ----------------- buscar ----------------------------
-
 DELIMITER //
 
 CREATE PROCEDURE BuscarMotocicletaPorPlaca(
@@ -177,24 +176,25 @@ BEGIN
         m.modelo,
         m.anio,
         m.activo,
-        dm.cilindraje AS cilindraje,
-        dm.tipo_motor AS tipo_motor,
-        dp.propietario_nombre AS propietario_nombre,
-        dp.propietario_direccion AS propietario_direccion
+        dm.cilindraje AS cilindraje_motor,
+        dm.tipo_motor AS tipo_motor_motor,
+        dp.propietario_nombre AS propietario_nombre_propietario,
+        dp.propietario_direccion AS propietario_direccion_propietario
     FROM motocicleta AS m
     LEFT JOIN detalles_motor AS dm ON m.placa = dm.motocicleta_placa
     LEFT JOIN detalles_propietario AS dp ON m.placa = dp.motocicleta_placa
-    WHERE m.placa = p_placa;
+    WHERE m.placa = p_placa AND m.activo = 1;
     
     -- Verificar si se encontró una motocicleta
     SELECT FOUND_ROWS() INTO v_motocicleta_encontrada;
     
     IF v_motocicleta_encontrada = 0 THEN
-        SELECT "No hay ninguna motocicleta con esa placa" AS Mensaje;
+        SELECT "No hay ninguna motocicleta activa con esa placa" AS Mensaje;
     END IF;
 END //
 
 DELIMITER ;
+
 
 
 ----------------- borrar logico -------------------

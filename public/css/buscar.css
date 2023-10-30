@@ -1,14 +1,13 @@
 
 .buscar{
     width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.buscar form{
-   height: 80px;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-}
+
 
 .componentesFormulario_buscar{
     margin-left: 10px;
