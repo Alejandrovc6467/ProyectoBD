@@ -220,7 +220,7 @@ $("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
   if (/^\d*$/.test($('#placa_a_buscar').val()) ) {
 
 
-    console.log( $('#placa_a_buscar').val());
+    //console.log( $('#placa_a_buscar').val());
 
    
     var p =  $('#placa_a_buscar').val();
@@ -240,6 +240,8 @@ $("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
 
         console.log(response);
 
+        //console.log('entre al success');
+
             //********************  no esta entrando al if, el console log me da un arry vacio */
             
         if (response[0].Mensaje  === 'No hay ninguna motocicleta activa con esa placa') {
@@ -255,9 +257,23 @@ $("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
 
 
 
-          console.log('entre al else');
-          //aqui debe
-             // obtenerMotocicletas();
+          $.each(response, function(index, motocicleta) {
+                
+          
+              console.log(motocicleta.placa);
+              console.log(motocicleta.marca);
+              console.log(motocicleta.modelo);
+              console.log(motocicleta.anio);
+              console.log(motocicleta.cilindraje);
+              console.log(motocicleta.tipo_motor);
+              console.log(motocicleta.propietario_nombre);
+              console.log(motocicleta.propietario_direccion);
+              
+          });
+
+          
+          //aqui actualizo la tabla 
+          // obtenerMotocicletas();
         }
 
 
