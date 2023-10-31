@@ -13,7 +13,10 @@
     flex-direction: row;
 }
 
-
+.botones_mostar_container{
+    display: flex;
+    flex-direction: row;
+}
 
 .componentesFormulario_buscar{
     margin-left: 10px;
@@ -51,23 +54,49 @@
     margin-left: 30px;
 }
 
+.butonmostrar_enmascararado{
+    background-color: #088cff;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 1px 10px;
+    border-color: transparent;
+    width: 200px;
+    margin-top: 31px;
+    margin-left: 30px;
+}
 
 
-@media all and (max-width:530px){
-
+@media all and (max-width:992px){
     .buscar {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .butonmostrar_todo{
+        margin-left: 10px;
+       
+    }
+
+    
+} 
+
+
+@media all and (max-width:530px){
 
     .botonesFormulario_buscar{
         margin-left: 10px;
     }
 
     .butonmostrar_todo{
-        margin-left: 10px;
+        font-size: 12px;
+        width: 130px;
     }
-    
+
+    .butonmostrar_enmascararado{
+        width: 150px;
+        font-size: 12px;
+     }
+   
    
 }  
 

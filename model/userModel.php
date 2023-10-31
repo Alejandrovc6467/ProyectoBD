@@ -58,6 +58,13 @@ class userModel
         return $resultado;
     }
 
+    public function obtenerMotocicletasEnmascarado()
+    {
+        $consulta = $this->db->query('CALL ObtenerMotocicletasActivasConDetallesEnmascarado()');
+        $resultado = $consulta->fetchAll();
+        return $resultado;
+    }
+
     public function BuscarMotocicletaPorPlaca($placa)
     {
         $consulta = $this->db->prepare('call BuscarMotocicletaPorPlaca(?)');

@@ -1,3 +1,4 @@
+
 // Entra en accion cuando se presiona el botón "buscar"
 $("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
 
@@ -114,10 +115,30 @@ $("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
   
   });
   
-  // Entra en accion cuando se presiona el boton "mostrar todo"
-  $("#botonesFormulario_mostrar_todo").on("click", ".butonmostrar_todo", function() {
+// Entra en accion cuando se presiona el boton "mostrar todo"
+$("#botonesFormulario_mostrar_todo").on("click", ".butonmostrar_todo", function() {
   
+  obtenerMotocicletas();
+  
+});
+
+
+
+
+var enmascarar = false;//para controlar el enmascarado, quitar luego para un futuro proyecto
+
+// Entra en accion cuando se presiona el boton "butonmostrar_enmascararado"
+$("#botonesFormulario_enmascararado").on("click", ".butonmostrar_enmascararado", function() {
+  
+  enmascarar = !enmascarar;
+
+  if(enmascarar){
+    obtenerMotocicletasEnmascarado();
+   
+  }else{
     obtenerMotocicletas();
-  
-  });
+  }
+
+
+});
   

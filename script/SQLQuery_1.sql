@@ -107,6 +107,28 @@ END //
 DELIMITER ;
 
 
+--------------------  obtener motocicletas, si tiene borrado logico no me las trae -------------------------
+DELIMITER //
+
+CREATE PROCEDURE ObtenerMotocicletasActivasConDetallesEnmascarado()
+BEGIN
+    SELECT
+        m.placa,
+        m.marca,
+        m.modelo,
+        m.anio,
+        dm.cilindraje,
+        dm.tipo_motor,
+        dp.propietario_nombre,
+        CONCAT(SUBSTRING(dp.propietario_direccion, 1, 2), REPEAT('*', LENGTH(dp.propietario_direccion) - 2)) AS propietario_direccion
+    FROM motocicleta AS m
+    LEFT JOIN detalles_motor AS dm ON m.placa = dm.motocicleta_placa
+    LEFT JOIN detalles_propietario AS dp ON m.placa = dp.motocicleta_placa
+    WHERE m.activo = 1;
+END //
+
+DELIMITER ;
+
 
 
 ----------------- actualizar ----------------------

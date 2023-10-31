@@ -81,6 +81,7 @@ include('public/menu.php');
   <div class="buscar">
 
     <div class="buscar_form_container">
+
       <div class="componentesFormulario_buscar">
         <label>Placa a buscar</label><br>
         <input type="text"  name="placa_a_buscar" id="placa_a_buscar" placeholder="Ingresa la placa"  autocomplete required >
@@ -89,11 +90,21 @@ include('public/menu.php');
       <div class="botonesFormulario_buscar" id="botonesFormulario_buscar">
         <button value="Buscar" id="buttonbuscar" class="botonBuscar">Buscar</button>
       </div>
+
     </div>
 
-    <div class="botonesFormulario_mostrar_todo" id="botonesFormulario_mostrar_todo">
-      <button value="Mostrar" id="butonmostrar_todo" class="butonmostrar_todo">Mostrar todo</button>
+    <div class="botones_mostar_container">
+
+      <div class="botonesFormulario_mostrar_todo" id="botonesFormulario_mostrar_todo">
+        <button value="Mostrar" id="butonmostrar_todo" class="butonmostrar_todo">Mostrar todo</button>
+      </div>
+
+      <div class="botonesFormulario_mostrar_todo" id="botonesFormulario_enmascararado">
+        <button value="Mostrar" id="butonmostrar_enmascararado" class="butonmostrar_enmascararado">Enmascarar</button>
+      </div>
+
     </div>
+    
   
   </div>
 
@@ -216,8 +227,8 @@ include('public/menu.php');
 <!--mis js, podria llamarlas en el footer, pero en realidad solo necesito que se carguen estos .js solo cuando estoy en esta pagina no en todas, si fuera un .js que si necesito para todas las paginas pues ese si seria la mejor opcion ponerlo ahi-->
 <script src="public/js/registrarMotocicleta.js?578784"></script>
 <script src="public/js/deleteFisco_deleteLofico_update.js?9578784"></script>
-<script src="public/js/obtenerMotocicletas.js?1"></script>
-<script src="public/js/buscar.js?2"></script>
+<script src="public/js/obtenerMotocicletas.js?2"></script>
+<script src="public/js/buscar.js?6"></script>
 
 
 

@@ -84,6 +84,19 @@ class IndexController
     }
 
 
+    public function obtenerMotocicletasEnmascarado()
+    {
+        require 'model/userModel.php';
+        $userModel = new userModel();
+
+        $lista = $userModel->obtenerMotocicletasEnmascarado();
+
+        header('Content-Type: application/json');
+        echo json_encode($lista);
+        exit;
+    }
+
+
     public function BuscarMotocicletaPorPlaca()
     {
         require 'model/userModel.php';

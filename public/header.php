@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="public/css/bienvenida.css?1"/>
 	<link rel="stylesheet" href="public/css/head.css?54">
 	<link rel="stylesheet" href="public/css/home.css?2">
-	<link rel="stylesheet" href="public/css/buscar.css?37821"/>
+	<link rel="stylesheet" href="public/css/buscar.css?2"/>
 	<link rel="stylesheet" href="public/css/tabla.css?71">
 
 
