@@ -210,29 +210,14 @@ include('public/menu.php');
 </div>
 
 
+ 
 
 
-
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-  <!--mis js, podria llamarlas en el footer, pero en realidad solo necesito que se carguen estos .js solo cuando estoy en esta pagina no en todas, si fuera un .js que si necesito para todas las paginas pues ese si seria la mejor opcion ponerlo ahi-->
-  <script src="public/js/registrarMotocicleta.js?578784"></script>
-  <script src="public/js/deleteFisco_deleteLofico_update.js?9578784"></script>
-  <script src="public/js/obtenerMotocicletas.js?1"></script>
-  <script src="public/js/buscar.js?2"></script>
-
-
+<!--mis js, podria llamarlas en el footer, pero en realidad solo necesito que se carguen estos .js solo cuando estoy en esta pagina no en todas, si fuera un .js que si necesito para todas las paginas pues ese si seria la mejor opcion ponerlo ahi-->
+<script src="public/js/registrarMotocicleta.js?578784"></script>
+<script src="public/js/deleteFisco_deleteLofico_update.js?9578784"></script>
+<script src="public/js/obtenerMotocicletas.js?1"></script>
+<script src="public/js/buscar.js?2"></script>
 
 
 
