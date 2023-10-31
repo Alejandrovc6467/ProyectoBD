@@ -88,7 +88,7 @@
     /*botones de las acciones de la tabla*/
 
     .delete-fisico-button{
-        background-color: #e14300;
+        background-color: #ff5900;
         color: rgb(255, 255, 255);
         border-radius: 5px;
         font-size: 13px;
@@ -100,7 +100,7 @@
     }
 
     .delete-logico-button{
-        background-color: #e14300;
+        background-color: #ff5900;
         font-size: 13px;
         color: rgb(255, 255, 255);
         border-radius: 5px;

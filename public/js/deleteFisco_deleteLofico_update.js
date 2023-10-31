@@ -62,7 +62,7 @@ document.getElementById('updateMotocicleta')
                 icon: 'error',
                 title: 'Oops...',
                 title: 'Ha ocurrido un error al actualizar',
-                confirmButtonColor: '#5A7099'
+                confirmButtonColor: '#088cff'
               })
 
              
@@ -74,7 +74,7 @@ document.getElementById('updateMotocicleta')
                 icon: 'success',
                 title: '¡Genial!',
                 text: 'Actualización realizada con éxito',
-                confirmButtonColor: '#5A7099'
+                confirmButtonColor: '#088cff'
               })
             }
 
@@ -131,7 +131,7 @@ $("#containertabla").on("click", ".delete-fisico-button", function() {
                 icon: 'error',
                 title: 'Oops...',
                 title: 'No se encontró ninguna motocicleta con la placa especificada',
-                confirmButtonColor: '#5A7099'
+                confirmButtonColor: '#088cff'
               })
 
              
@@ -143,7 +143,7 @@ $("#containertabla").on("click", ".delete-fisico-button", function() {
                 icon: 'success',
                 title: '¡Genial!',
                 text: 'Borrado realizado con éxito',
-                confirmButtonColor: '#5A7099'
+                confirmButtonColor: '#088cff'
               })
 
               obtenerMotocicletas();
@@ -194,7 +194,7 @@ $("#containertabla").on("click", ".delete-logico-button", function() {
               icon: 'error',
               title: 'Oops...',
               title: 'No se encontró ninguna motocicleta con la placa especificada',
-              confirmButtonColor: '#5A7099'
+              confirmButtonColor: '#088cff'
             })
 
            
@@ -206,7 +206,7 @@ $("#containertabla").on("click", ".delete-logico-button", function() {
               icon: 'success',
               title: '¡Genial!',
               text: 'Borrado realizado con éxito',
-              confirmButtonColor: '#5A7099'
+              confirmButtonColor: '#088cff'
             })
 
             obtenerMotocicletas();

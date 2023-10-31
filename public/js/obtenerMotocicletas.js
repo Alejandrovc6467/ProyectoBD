@@ -21,17 +21,19 @@ function obtenerMotocicletas() {
                 row.append($("<td>").text(motocicleta.propietario_direccion));
 
                 var buttonDeleteFisico = $("<button>")
-                    .text("Delete Físico")
+                    .text("Delete Físico ")
                     .attr("class", "delete-fisico-button")
-                    .data("placa", motocicleta.placa);
+                    .data("placa", motocicleta.placa)
+                    .append('<i class="fa-solid fa-trash fa-sm" style="color: #ffffff;"></i>');
 
                 var buttonDeleteLogico = $("<button>")
-                    .text("Delete Lógico")
+                    .text("Delete Lógico ")
                     .attr("class", "delete-logico-button")
-                    .data("placa", motocicleta.placa);
+                    .data("placa", motocicleta.placa)
+                    .append('<i class="fa-solid fa-trash fa-sm" style="color: #ffffff;"></i>');
 
                 var buttonUpdate = $("<button>")
-                    .text("Update")
+                    .text("Update ")
                     .attr("class", "update-button")
                     .attr("data-bs-toggle", "modal")
                     .data("placa", motocicleta.placa)//le paso todos los datos de esa fila a mi boton y con los demas igual
@@ -42,7 +44,10 @@ function obtenerMotocicletas() {
                     .data("tipo_motor", motocicleta.tipo_motor)
                     .data("propietario_nombre", motocicleta.propietario_nombre)
                     .data("propietario_direccion", motocicleta.propietario_direccion)
-                    .attr("data-bs-target", "#modalupdate");//atributo para que me abra el modal de bootstrap
+                    .attr("data-bs-target", "#modalupdate")
+                    .append('<i class="fa-solid fa-pen-to-square fa-sm" style="color: #ffffff;"></i>');//atributo para que me abra el modal de bootstrap
+
+                   
 
                 var tdButtons = $("<td>").append(buttonUpdate, buttonDeleteFisico, buttonDeleteLogico);
 

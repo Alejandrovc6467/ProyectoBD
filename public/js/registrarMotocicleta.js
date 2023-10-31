@@ -41,7 +41,7 @@
                 icon: 'error',
                 title: 'Oops...',
                 title: 'Placa ya registrada',
-                confirmButtonColor: '#5A7099'
+                confirmButtonColor: '#088cff'
               })
 
              
@@ -53,7 +53,7 @@
                 icon: 'success',
                 title: '¡Genial!',
                 text: 'Motocicleta registrada exitosamente',
-                confirmButtonColor: '#5A7099'
+                confirmButtonColor: '#088cff'
               })
             }
 

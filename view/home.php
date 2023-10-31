@@ -6,7 +6,6 @@ include('public/menu.php');
 
 
 
-
 <div class="home container"  data-aos="fade-right" data-aos-duration="1500">
 
 
@@ -66,10 +65,11 @@ include('public/menu.php');
       </div>
 
 
+     
       <div class="botonesFormulario">
-        <input type="submit" value="Registrar" id="buttonregistrar" class="botonRegistrar">
+        <input type="submit" value="Registrar" id="buttonregistrar" class="botonRegistrar" >
       </div>
-
+      
             
     </form>
 
@@ -80,13 +80,19 @@ include('public/menu.php');
 
   <div class="buscar">
 
-    <div class="componentesFormulario_buscar">
-      <label>Placa a buscar</label><br>
-      <input type="text"  name="placa_a_buscar" id="placa_a_buscar" placeholder="Ingresa la placa"  autocomplete required >
+    <div class="buscar_form_container">
+      <div class="componentesFormulario_buscar">
+        <label>Placa a buscar</label><br>
+        <input type="text"  name="placa_a_buscar" id="placa_a_buscar" placeholder="Ingresa la placa"  autocomplete required >
+      </div>
+
+      <div class="botonesFormulario_buscar" id="botonesFormulario_buscar">
+        <button value="Buscar" id="buttonbuscar" class="botonBuscar">Buscar</button>
+      </div>
     </div>
 
-    <div class="botonesFormulario_buscar" id="botonesFormulario_buscar">
-      <button value="Buscar" id="buttonbuscar" class="botonBuscar">Buscar</button>
+    <div class="botonesFormulario_mostrar_todo" id="botonesFormulario_mostrar_todo">
+      <button value="Mostrar" id="butonmostrar_todo" class="butonmostrar_todo">Mostrar todo</button>
     </div>
   
   </div>
@@ -211,96 +217,6 @@ include('public/menu.php');
    
 
 
-<script>
-
-// Entra en accion cuando se presiona el botón "buscar"
-$("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
-
-  //verifico que solo se ingresen valores numericos en placa
-  if (/^\d*$/.test($('#placa_a_buscar').val()) ) {
-
-
-    //console.log( $('#placa_a_buscar').val());
-
-   
-    var p =  $('#placa_a_buscar').val();
-    
-
-    var databuscar = {
-      placa: p
-    };
-
-    
-    $.ajax({
-      type: "POST",
-      url: "?controlador=Index&accion=BuscarMotocicletaPorPlaca",
-      data: databuscar,
-      dataType: "json",
-      success: function(response) {
-
-        console.log(response);
-
-        //console.log('entre al success');
-
-            //********************  no esta entrando al if, el console log me da un arry vacio */
-            
-        if (response[0].Mensaje  === 'No hay ninguna motocicleta activa con esa placa') {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                title: 'No hay ninguna motocicleta activa con esa placa',
-                confirmButtonColor: '#5A7099'
-              })
-
-             
-        } else {
-
-
-
-          $.each(response, function(index, motocicleta) {
-                
-          
-              console.log(motocicleta.placa);
-              console.log(motocicleta.marca);
-              console.log(motocicleta.modelo);
-              console.log(motocicleta.anio);
-              console.log(motocicleta.cilindraje);
-              console.log(motocicleta.tipo_motor);
-              console.log(motocicleta.propietario_nombre);
-              console.log(motocicleta.propietario_direccion);
-              
-          });
-
-          
-          //aqui actualizo la tabla 
-          // obtenerMotocicletas();
-        }
-
-
-            
-        },
-          error: function(xhr, status, error) {
-          console.log(error, xhr, status)
-        }
-
-    });
-
-
-
-  } else {
-    Swal.fire({
-    icon: 'error',
-    title: 'Oops...',
-    text: 'Ingresa solo valores numéricos para buscar'
-    })
-  }
-  
-
-
-});
-
-
-</script>
 
 
 
@@ -309,10 +225,13 @@ $("#botonesFormulario_buscar").on("click", ".botonBuscar", function() {
 
 
 
- <!--mis js, podria llamarlas en el footer, pero en realidad solo necesito que se carguen estos .js solo cuando estoy en esta pagina no en todas, si fuera un .js que si necesito para todas las paginas pues ese si seria la mejor opcion ponerlo ahi-->
+
+  <!--mis js, podria llamarlas en el footer, pero en realidad solo necesito que se carguen estos .js solo cuando estoy en esta pagina no en todas, si fuera un .js que si necesito para todas las paginas pues ese si seria la mejor opcion ponerlo ahi-->
   <script src="public/js/registrarMotocicleta.js?578784"></script>
   <script src="public/js/deleteFisco_deleteLofico_update.js?9578784"></script>
-  <script src="public/js/obtenerMotocicletas.js"></script>
+  <script src="public/js/obtenerMotocicletas.js?1"></script>
+  <script src="public/js/buscar.js?2"></script>
+
 
 
 

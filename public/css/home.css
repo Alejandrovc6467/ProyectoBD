@@ -88,6 +88,8 @@ input:hover{
 
 
 
+
+
 @media all and (max-width:530px){
 
     form{
@@ -100,6 +102,9 @@ input:hover{
     form p {
         margin-bottom: 20px;
     }
+
+   
+ 
 
 }  
 
